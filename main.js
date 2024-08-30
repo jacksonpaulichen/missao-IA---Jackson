@@ -58,15 +58,15 @@ const perguntas = [
         ]
     },
     {
-        enunciado: " Pergunta?",
+        enunciado: " Você praticaria rally ? ",
         alternativas: [ 
             {
-                texto: " Texto/resposta ",
-                afirmacao: "Afirmação",
+                texto: " Sim, Gosto muito ",
+                afirmacao: " Seu estilo faz com que você goste mais de aventuras e emoções ",
             },
             {
-                texto: " Texto/resposta ",
-                afirmacao: " Afirmação ",
+                texto: " Não, acho perigoso ",
+                afirmacao: " Seu estilo faz com que você goste mais de segurança sem se arriscar muito, uma aventura mais segura ",
             } 
         ]
     },
@@ -74,6 +74,7 @@ const perguntas = [
 
 let atual = 0;
 let perguntaAtual;
+let historiaFinal = ""
 
 function mostraPergunta (){
     perguntaAtual = perguntas[atual];
@@ -85,6 +86,7 @@ function mostraAlternativas(){
     for (const alternativas of perguntaAtual.alternativas){
         const botaoAlternativas = document.createElement("button")
         botaoAlternativas.textContent= alternativa.texto;
+        botaoAlternativas.addEventListener("click"),() => respostaSelecionada(alternativas)
         caixaAlternativas.appendChild(botaoAlternativas);
 
     }
@@ -92,5 +94,18 @@ function mostraAlternativas(){
 
 }
 
+function respostaSelecionada(opcaoSelecionda){
+    const afirmacoes = opcaoSelecionda.afirmacoes;
+    historiaFinal = afirmacoes += " "
+    atual++;
+    mostraPergunta();
+}
+
+function mostraResultado (){
+    caixaPerguntas.texteContent = "Em 2049...";
+    textoResultados.textContent = historiaFinal;
+    caixaAlternativas.textContent = " ";
+
+}
 
 mostraPergunta();
